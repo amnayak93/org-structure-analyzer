@@ -1,0 +1,13 @@
+Id,firstName,lastName,salary,managerId
+123,Joe,Doe,60000,
+124,Martin,Chekov,45000,123
+125,Bob,Ronstad,47000,123
+300,Alice,Hasacat,50000,124
+305,Brett,Hardleaf,34000,300
+306,Mo,Salah,55000,123
+307,Eden,Hazard,32000,300
+308,Phoebe,Buffay,38000,300
+309,Jon,Snow,65000,124
+310,Harry,Potter,28000,305
+311,Cristiano,Ronaldo,31000,310
+312,Lionel,Messi,29000,311

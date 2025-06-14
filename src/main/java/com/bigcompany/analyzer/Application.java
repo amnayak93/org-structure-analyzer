@@ -12,7 +12,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
 
-        String csvFilePath = "./src/main/resources/employees.csv";
+        String csvFilePath = args.length > 0 ? args[0] : "./src/main/resources/employees.csv";
 
         try {
             System.out.println("Reading employee data from: " + csvFilePath);

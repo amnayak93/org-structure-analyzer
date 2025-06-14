@@ -30,7 +30,7 @@ public class ReportingLineAnalysisIssue extends AnalysisIssue {
 
     @Override
     public String getDescription() {
-        return String.format("%s current level is %s and it has %s extra levels", employee.getFullName(), currentLevel, extraLevels);
+        return String.format("%s has long reporting line, reporting level is at %s and has %s extra level/s", employee.getFullName(), currentLevel, extraLevels);
     }
 
     @Override

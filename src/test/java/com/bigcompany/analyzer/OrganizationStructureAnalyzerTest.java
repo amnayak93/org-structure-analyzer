@@ -62,13 +62,8 @@ public class OrganizationStructureAnalyzerTest {
     @Test
     @DisplayName("Should identify underpaid managers")
     void testShouldIdentifyUnderpaidManagers() {
-        List<SalaryAnalysisIssue> underpaidManagers = result.salaryAnalysisIssues()
-                .stream()
-                .filter(salaryAnalysisIssue -> salaryAnalysisIssue.getIssueType().name().equals("SALARY_UNDERPAID"))
-                .toList();
-
+        List<SalaryAnalysisIssue> underpaidManagers = result.underPaidSalaryIssues();
         assertFalse(underpaidManagers.isEmpty());
-
         assertTrue(underpaidManagers.stream()
                 .anyMatch(salaryAnalysisIssue -> salaryAnalysisIssue.getEmployee().getFullName().equals("Harry Potter")));
     }
@@ -76,13 +71,8 @@ public class OrganizationStructureAnalyzerTest {
     @Test
     @DisplayName("Should identify overpaid managers")
     void testShouldIdentifyOverPaidManagers() {
-        List<SalaryAnalysisIssue> overpaidManagers = result.salaryAnalysisIssues()
-                .stream()
-                .filter(salaryAnalysisIssue -> salaryAnalysisIssue.getIssueType().name().equals("SALARY_OVERPAID"))
-                .toList();
-
+        List<SalaryAnalysisIssue> overpaidManagers = result.overPaidSalaryIssues();
         assertFalse(overpaidManagers.isEmpty());
-
         assertTrue(overpaidManagers.stream()
                 .anyMatch(salaryAnalysisIssue -> salaryAnalysisIssue.getEmployee().getFullName().equals("Jon Snow")));
     }
@@ -95,5 +85,11 @@ public class OrganizationStructureAnalyzerTest {
         assertEquals(reportingLineAnalysisIssues.size(), 1);
         assertTrue(reportingLineAnalysisIssues.stream()
                 .anyMatch(reportingLineAnalysisIssue -> reportingLineAnalysisIssue.getEmployee().getFullName().equals("Lionel Messi")));
+    }
+
+    @Test
+    @DisplayName("Should handle empty employee list")
+    void testShouldHandleEmptyEmployeeList() {
+        assertThrows(IllegalArgumentException.class, () -> analyzer.analyze(List.of()));
     }
 }

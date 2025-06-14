@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class OrganizationStructureBuilder {
 
     public static void buildOrgStructure(List<Employee> employees) {
+        validateEmployees(employees);
         Map<Long, Employee> employeeMap = buildEmployeeMap(employees);
 
         employees.forEach(employee ->
@@ -38,13 +39,6 @@ public class OrganizationStructureBuilder {
         return employeeHierarchyLevelMap;
     }
 
-    private static Employee findCEO(List<Employee> employees) {
-        return employees.stream()
-                .filter(Employee::isCEO)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No CEO found in the Company"));
-    }
-
     public static Map<Long, Employee> buildEmployeeMap(List<Employee> employees) {
         return employees.stream()
                 .collect(
@@ -54,5 +48,18 @@ public class OrganizationStructureBuilder {
                                 (existing, replacement) -> existing
                         )
                 );
+    }
+
+    private static Employee findCEO(List<Employee> employees) {
+        return employees.stream()
+                .filter(Employee::isCEO)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No CEO found in the Company"));
+    }
+
+    private static void validateEmployees(List<Employee> employees) {
+        if (employees == null || employees.isEmpty()) {
+            throw new IllegalArgumentException("Employee list should not be null or empty");
+        }
     }
 }

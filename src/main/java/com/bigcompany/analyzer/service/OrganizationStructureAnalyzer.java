@@ -29,6 +29,16 @@ public class OrganizationStructureAnalyzer {
         List<SalaryAnalysisIssue> salaryAnalysisIssues = salaryAnalysisService.analyseIssues(employees);
         List<ReportingLineAnalysisIssue> reportingLineAnalysisIssues = reportingLineAnalysisService.analyseIssues(employees);
 
-        return new AnalysisResult(salaryAnalysisIssues, reportingLineAnalysisIssues);
+        List<SalaryAnalysisIssue> underPaidSalaryIssues = salaryAnalysisIssues
+                .stream()
+                .filter(salaryAnalysisIssue -> salaryAnalysisIssue.getIssueType().name().equals("SALARY_UNDERPAID"))
+                .toList();
+
+        List<SalaryAnalysisIssue> overPaidSalaryIssues = salaryAnalysisIssues
+                .stream()
+                .filter(salaryAnalysisIssue -> salaryAnalysisIssue.getIssueType().name().equals("SALARY_OVERPAID"))
+                .toList();
+
+        return new AnalysisResult(underPaidSalaryIssues, overPaidSalaryIssues, reportingLineAnalysisIssues);
     }
 }

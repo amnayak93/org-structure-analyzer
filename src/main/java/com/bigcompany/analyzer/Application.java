@@ -9,8 +9,7 @@ import com.bigcompany.analyzer.service.OrganizationStructureAnalyzer;
 
 import java.util.List;
 
-public class Application
-{
+public class Application {
     public static void main(String[] args) {
 
         String csvFilePath = "./src/main/resources/employees.csv";
@@ -25,7 +24,8 @@ public class Application
             OrganizationStructureAnalyzer analyzer = OrganizationStructureAnalyzer.withDefaultRules();
             AnalysisResult analysisResult = analyzer.analyze(employees);
 
-            printSalaryIssues(analysisResult.salaryAnalysisIssues());
+            printUnderPaidSalaryIssues(analysisResult.underPaidSalaryIssues());
+            printOverPaidSalaryIssues(analysisResult.overPaidSalaryIssues());
             printReportingLineIssues(analysisResult.reportingLineAnalysisIssues());
 
         } catch (Exception e) {
@@ -34,29 +34,43 @@ public class Application
         }
     }
 
-    private static void printSalaryIssues(List<SalaryAnalysisIssue> issues) {
-        System.out.println("=== SALARY ANALYSIS ===");
+    private static void printUnderPaidSalaryIssues(List<SalaryAnalysisIssue> issues) {
+        System.out.println("========UNDERPAID SALARY ANALYSIS =======");
 
         if (issues.isEmpty()) {
-            System.out.println("All managers have appropriate salaries");
+            System.out.println("No managers have underpaid salaries");
         } else {
-            System.out.println("Found " + issues.size() + " salary issue(s):");
+            System.out.println("Found " + issues.size() + " underpaid salary issue(s):");
             for (SalaryAnalysisIssue issue : issues) {
-                System.out.println("  • " + issue);
+                System.out.println("  - " + issue);
+            }
+        }
+        System.out.println();
+    }
+
+    private static void printOverPaidSalaryIssues(List<SalaryAnalysisIssue> issues) {
+        System.out.println("========OVERPAID SALARY ANALYSIS =======");
+
+        if (issues.isEmpty()) {
+            System.out.println("No managers have overpaid salaries");
+        } else {
+            System.out.println("Found " + issues.size() + " overpaid salary issue(s):");
+            for (SalaryAnalysisIssue issue : issues) {
+                System.out.println("  - " + issue);
             }
         }
         System.out.println();
     }
 
     private static void printReportingLineIssues(List<ReportingLineAnalysisIssue> reportingLevelIssues) {
-        System.out.println("=== REPORTING ANALYSIS ===");
+        System.out.println("====== REPORTING LINE ANALYSIS ======");
 
         if (reportingLevelIssues == null || reportingLevelIssues.isEmpty()) {
             System.out.println("no issues found in reporting line");
         } else {
-            System.out.println("Found " + reportingLevelIssues.size() + " reporting level issue(s):");
+            System.out.println("Found " + reportingLevelIssues.size() + " reporting line level issue(s):");
             for (ReportingLineAnalysisIssue issue : reportingLevelIssues) {
-                System.out.println("  • " + issue);
+                System.out.println("  - " + issue);
             }
         }
         System.out.println();

@@ -1,6 +1,6 @@
-package com.bigcompany.analyser.io;
+package com.bigcompany.analyzer.io;
 
-import com.bigcompany.analyser.model.Employee;
+import com.bigcompany.analyzer.model.Employee;
 
 import java.io.BufferedReader;
 import java.io.IOException;

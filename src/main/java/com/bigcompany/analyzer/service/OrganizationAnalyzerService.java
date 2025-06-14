@@ -1,6 +1,6 @@
-package com.bigcompany.analyser.service;
+package com.bigcompany.analyzer.service;
 
-import com.bigcompany.analyser.model.Employee;
+import com.bigcompany.analyzer.model.Employee;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Deprecated
 public class OrganizationAnalyzerService {
     private final Map<Long, Employee> employeeMap;
     private static final BigDecimal MIN_SALARY_MULTIPLIER = new BigDecimal("1.2");
@@ -83,7 +84,6 @@ public class OrganizationAnalyzerService {
         }
         return Optional.empty();
     }
-
 
     private Employee findCEO() {
         return employeeMap.values()

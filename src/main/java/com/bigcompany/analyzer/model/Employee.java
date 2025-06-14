@@ -1,4 +1,4 @@
-package com.bigcompany.analyser.model;
+package com.bigcompany.analyzer.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

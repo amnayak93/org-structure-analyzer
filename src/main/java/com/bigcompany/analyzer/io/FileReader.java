@@ -1,4 +1,4 @@
-package com.bigcompany.analyser.io;
+package com.bigcompany.analyzer.io;
 
 import java.io.IOException;
 import java.util.List;

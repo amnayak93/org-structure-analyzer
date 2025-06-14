@@ -1,6 +1,4 @@
-package com.bigcompany.analyzer.builder;
-
-import com.bigcompany.analyzer.model.Employee;
+package com.bigcompany.analyzer.model;
 
 import java.util.HashMap;
 import java.util.List;

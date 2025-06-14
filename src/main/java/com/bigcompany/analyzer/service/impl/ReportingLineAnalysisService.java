@@ -1,6 +1,6 @@
 package com.bigcompany.analyzer.service.impl;
 
-import com.bigcompany.analyzer.builder.OrganizationStructureBuilder;
+import com.bigcompany.analyzer.model.OrganizationStructureBuilder;
 import com.bigcompany.analyzer.model.Employee;
 import com.bigcompany.analyzer.model.issue.IssueType;
 import com.bigcompany.analyzer.model.issue.ReportingLineAnalysisIssue;

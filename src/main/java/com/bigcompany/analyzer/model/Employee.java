@@ -88,7 +88,7 @@ public class Employee {
         return getManagerId() == null;
     }
 
-    public void addReportingEmployee(Employee employee) {
+    void addReportingEmployee(Employee employee) {
         reportingEmployees.add(employee);
     }
 
